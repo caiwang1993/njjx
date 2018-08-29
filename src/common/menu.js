@@ -2,6 +2,11 @@ import { isUrl } from '../utils/utils';
 
 const menuData = [
   {
+    name: '企业之窗',
+    icon: 'windows-o',
+    path: 'windows',
+  },
+  {
     name: 'dashboard',
     icon: 'dashboard',
     path: 'dashboard',
@@ -22,6 +27,7 @@ const menuData = [
       },
     ],
   },
+
   {
     name: '表单页',
     icon: 'form',

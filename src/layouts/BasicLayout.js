@@ -15,6 +15,7 @@ import NotFound from '../routes/Exception/404';
 import { getRoutes } from '../utils/utils';
 import Authorized from '../utils/Authorized';
 import { getMenuData } from '../common/menu';
+import styles from './BasicLayout.less';
 import logo from '../assets/logo.svg';
 
 const { Content, Header, Footer } = Layout;
@@ -102,6 +103,7 @@ export default class BasicLayout extends React.PureComponent {
 
   state = {
     isMobile,
+    isShow: false,
   };
 
   getChildContext() {
@@ -195,7 +197,11 @@ export default class BasicLayout extends React.PureComponent {
       });
     }
   };
-
+  handleShow = () => {
+    this.setState({
+      isShow: !this.state.isShow,
+    });
+  };
   handleNoticeVisibleChange = visible => {
     const { dispatch } = this.props;
     if (visible) {
@@ -218,23 +224,26 @@ export default class BasicLayout extends React.PureComponent {
     const { isMobile: mb } = this.state;
     const baseRedirect = this.getBaseRedirect();
     const layout = (
-      <Layout>
-        <SiderMenu
-          logo={logo}
-          // 不带Authorized参数的情况下如果没有权限,会强制跳到403界面
-          // If you do not have the Authorized parameter
-          // you will be forced to jump to the 403 interface without permission
-          Authorized={Authorized}
-          menuData={getMenuData()}
-          collapsed={collapsed}
-          location={location}
-          isMobile={mb}
-          onCollapse={this.handleMenuCollapse}
-        />
+      <Layout className={styles.bg}>
+        {this.state.isShow ? (
+          <SiderMenu
+            // 不带Authorized参数的情况下如果没有权限,会强制跳到403界面
+            // If you do not have the Authorized parameter
+            // you will be forced to jump to the 403 interface without permission
+            Authorized={Authorized}
+            menuData={getMenuData()}
+            collapsed={!collapsed}
+            location={location}
+            isMobile={mb}
+            onCollapse={this.handleMenuCollapse}
+          />
+        ) : (
+          ''
+        )}
+
         <Layout>
           <Header style={{ padding: 0 }}>
             <GlobalHeader
-              logo={logo}
               currentUser={currentUser}
               fetchingNotices={fetchingNotices}
               notices={notices}
@@ -244,6 +253,7 @@ export default class BasicLayout extends React.PureComponent {
               onCollapse={this.handleMenuCollapse}
               onMenuClick={this.handleMenuClick}
               onNoticeVisibleChange={this.handleNoticeVisibleChange}
+              handleShow={this.handleShow}
             />
           </Header>
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
@@ -265,35 +275,6 @@ export default class BasicLayout extends React.PureComponent {
               <Route render={NotFound} />
             </Switch>
           </Content>
-          <Footer style={{ padding: 0 }}>
-            <GlobalFooter
-              links={[
-                {
-                  key: 'Pro 首页',
-                  title: 'Pro 首页',
-                  href: 'http://pro.ant.design',
-                  blankTarget: true,
-                },
-                {
-                  key: 'github',
-                  title: <Icon type="github" />,
-                  href: 'https://github.com/ant-design/ant-design-pro',
-                  blankTarget: true,
-                },
-                {
-                  key: 'Ant Design',
-                  title: 'Ant Design',
-                  href: 'http://ant.design',
-                  blankTarget: true,
-                },
-              ]}
-              copyright={
-                <Fragment>
-                  Copyright <Icon type="copyright" /> 2018 蚂蚁金服体验技术部出品
-                </Fragment>
-              }
-            />
-          </Footer>
         </Layout>
       </Layout>
     );

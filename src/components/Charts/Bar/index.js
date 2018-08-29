@@ -55,14 +55,7 @@ class Bar extends Component {
   }
 
   render() {
-    const {
-      height,
-      title,
-      forceFit = true,
-      data,
-      color = 'rgba(24, 144, 255, 0.85)',
-      padding,
-    } = this.props;
+    const { height, title, forceFit = true, data, color = '#42febb', padding } = this.props;
 
     const { autoHideXLabels } = this.state;
 
@@ -74,7 +67,14 @@ class Bar extends Component {
         min: 0,
       },
     };
-
+    const label = {
+      textStyle: {
+        textAlign: 'center', // 文本对齐方向，可取值为： start center end
+        fill: '#fff', // 文本的颜色
+        fontSize: '12', // 文本大小
+        fontWeight: 'bold', // 文本粗细
+      },
+    };
     const tooltip = [
       'x*y',
       (x, y) => ({
@@ -97,10 +97,11 @@ class Bar extends Component {
             <Axis
               name="x"
               title={false}
-              label={autoHideXLabels ? false : {}}
+              //label={autoHideXLabels ? false : {}}
+              label={label}
               tickLine={autoHideXLabels ? false : {}}
             />
-            <Axis name="y" min={0} />
+            <Axis name="y" min={0} label={label} />
             <Tooltip showTitle={false} crosshairs={false} />
             <Geom type="interval" position="x*y" color={color} tooltip={tooltip} />
           </Chart>

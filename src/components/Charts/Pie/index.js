@@ -212,7 +212,8 @@ export default class Pie extends Component {
             <Chart
               scale={scale}
               height={height}
-              forceFit={forceFit}
+              width={130}
+              // forceFit={forceFit}
               data={dv}
               padding={padding}
               animate={animate}
@@ -221,12 +222,13 @@ export default class Pie extends Component {
               {!!tooltip && <Tooltip showTitle={false} />}
               <Coord type="theta" innerRadius={inner} />
               <Geom
-                style={{ lineWidth, stroke: '#fff' }}
+                style={{ lineWidth, stroke: 'transparent' }}
                 tooltip={tooltip && tooltipFormat}
                 type="intervalStack"
                 position="percent"
                 color={['x', percent ? formatColor : defaultColors]}
                 selected={selected}
+                size={16}
               />
             </Chart>
 
@@ -254,9 +256,9 @@ export default class Pie extends Component {
                 />
                 <span className={styles.legendTitle}>{item.x}</span>
                 <Divider type="vertical" />
-                <span className={styles.percent}>
+                {/*<span className={styles.percent}>
                   {`${(isNaN(item.percent) ? 0 : item.percent * 100).toFixed(2)}%`}
-                </span>
+                </span>*/}
                 <span className={styles.value}>{valueFormat ? valueFormat(item.y) : item.y}</span>
               </li>
             ))}

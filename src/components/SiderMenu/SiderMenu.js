@@ -75,8 +75,7 @@ export default class SiderMenu extends PureComponent {
   getDefaultCollapsedSubMenus(props) {
     const {
       location: { pathname },
-    } =
-      props || this.props;
+    } = props || this.props;
     return getMenuMatchKeys(this.flatMenuKeys, urlToList(pathname));
   }
 
@@ -233,12 +232,7 @@ export default class SiderMenu extends PureComponent {
         width={256}
         className={styles.sider}
       >
-        <div className={styles.logo} key="logo">
-          <Link to="/">
-            <img src={logo} alt="logo" />
-            <h1>Ant Design Pro</h1>
-          </Link>
-        </div>
+        <div className={styles.logo} key="logo" />
         <Menu
           key="Menu"
           theme="dark"
