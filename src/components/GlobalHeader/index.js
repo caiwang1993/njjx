@@ -68,6 +68,7 @@ export default class GlobalHeader extends PureComponent {
       onMenuClick,
       onNoticeClear,
       handleShow,
+      title,
     } = this.props;
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
@@ -104,7 +105,7 @@ export default class GlobalHeader extends PureComponent {
           type={collapsed ? 'menu-unfold' : 'menu-fold'}
           onClick={this.toggle}
         />*/}
-        <span className={styles.title}>南极机械可视化展示-企业之窗</span>
+        <span className={styles.title}>{title}</span>
       </div>
     );
   }

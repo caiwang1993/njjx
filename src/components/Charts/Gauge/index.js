@@ -61,41 +61,56 @@ export default class Gauge extends React.Component {
       forceFit = true,
       formatter = defaultFormatter,
       color = '#2F9CFF',
-      bgColor = '#F0F2F5',
+      bgColor = '#ddd',
+      min,
+      max,
+      end=[100, 0.965],
+      tickInterval,
+      unit,
     } = this.props;
     const cols = {
       value: {
         type: 'linear',
-        min: 0,
-        max: 10,
+        min: min,
+        max: max,
+        tickInterval: tickInterval,
         tickCount: 6,
-        nice: true,
+        nice: false,
       },
     };
-    const data = [{ value: percent / 10 }];
+    const data = [{ value: percent / 1 }];
     return (
       <Chart height={height} data={data} scale={cols} padding={[-16, 0, 16, 0]} forceFit={forceFit}>
         <Coord type="polar" startAngle={-1.25 * Math.PI} endAngle={0.25 * Math.PI} radius={0.8} />
         <Axis name="1" line={null} />
         <Axis
           line={null}
-          tickLine={null}
-          subTickLine={null}
+          tickLine={{
+            length: -18,
+            stroke: '#fff',
+            strokeOpacity: 1
+          }}
+          subTickLine={{
+            length: -8,
+            stroke: '#fff',
+            strokeOpacity: 1
+          }}
+          subTickCount={4}
           name="value"
           zIndex={2}
           gird={null}
           label={{
             offset: -12,
-            formatter,
+            //formatter,
             textStyle: {
               fontSize: 12,
-              fill: 'rgba(0, 0, 0, 0.65)',
+              fill: '#fff',
               textAlign: 'center',
             },
           }}
         />
         <Guide>
-          <Line
+          {/*<Line
             start={[3, 0.905]}
             end={[3, 0.85]}
             lineStyle={{
@@ -121,14 +136,16 @@ export default class Gauge extends React.Component {
               lineDash: null,
               lineWidth: 3,
             }}
-          />
+          />*/}
           <Arc
             zIndex={0}
             start={[0, 0.965]}
-            end={[10, 0.965]}
+            //end={[1, 0.965]}
+            end={end}
             style={{
               stroke: bgColor,
-              lineWidth: 10,
+              lineWidth: 5,
+              //opacity: 0.09,
             }}
           />
           <Arc
@@ -137,7 +154,7 @@ export default class Gauge extends React.Component {
             end={[data[0].value, 0.965]}
             style={{
               stroke: color,
-              lineWidth: 10,
+              lineWidth: 5,
             }}
           />
           <Html
@@ -145,9 +162,9 @@ export default class Gauge extends React.Component {
             html={() => {
               return `
                 <div style="width: 300px;text-align: center;font-size: 12px!important;">
-                  <p style="font-size: 14px; color: rgba(0,0,0,0.43);margin: 0;">${title}</p>
-                  <p style="font-size: 24px;color: rgba(0,0,0,0.85);margin: 0;">
-                    ${data[0].value * 10}%
+                  <p style="font-size: 14px;font-weight: bold; color: rgba(255,255,255,0.85);margin: 0;">${title}</p>
+                  <p style="font-size: 24px;color: rgba(255,255,255,0.85);margin: 0;">
+                    ${data[0].value * 1} ${unit}
                   </p>
                 </div>`;
             }}

@@ -7,6 +7,11 @@ const menuData = [
     path: 'windows',
   },
   {
+    name: '产品中心',
+    icon: 'appstore-o',
+    path: 'product',
+  },
+  {
     name: 'dashboard',
     icon: 'dashboard',
     path: 'dashboard',

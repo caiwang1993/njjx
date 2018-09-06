@@ -1,11 +1,8 @@
 import React, { PureComponent, Component } from 'react';
-import { routerRedux, Route, Switch } from 'dva/router';
 import { connect } from 'dva';
-import { Input, Row, Card, Col, Carousel, Icon, Modal } from 'antd';
+import { Row, Card, Col, Carousel, Icon, Modal } from 'antd';
 import CardHead from '../../assets/news_head.jpg';
 import QueueAnim from 'rc-queue-anim';
-
-import CardBody from '../../assets/card_body.png';
 import honor from '../../assets/honor.png';
 import honor1 from '../../assets/honor1.jpg';
 import zizhi from '../../assets/zizhi.png';

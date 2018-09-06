@@ -77,6 +77,9 @@ export const getRouterData = app => {
     '/windows': {
       component: dynamicWrapper(app, ['windows'], () => import('../routes/Windows/Windows')),
     },
+    '/product': {
+      component: dynamicWrapper(app, [], () => import('../routes/Product/Product')),
+    },
     '/dashboard/analysis': {
       component: dynamicWrapper(app, ['chart'], () => import('../routes/Dashboard/Analysis')),
     },

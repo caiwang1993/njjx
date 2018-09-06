@@ -129,7 +129,22 @@ export default class BasicLayout extends React.PureComponent {
   componentWillUnmount() {
     unenquireScreen(this.enquireHandler);
   }
-
+  getHeadTitle =()=> {
+    const { routerData, location } = this.props;
+    const { pathname } = location;
+    let title = 'Ant Design Pro';
+    let currRouterData = null;
+    // match params path
+    Object.keys(routerData).forEach(key => {
+      if (pathToRegexp(key).test(pathname)) {
+        currRouterData = routerData[key];
+      }
+    });
+    if (currRouterData && currRouterData.name) {
+      title = `南极机械可视化展示 - ${currRouterData.name} `;
+    }
+    return title;
+  };
   getPageTitle() {
     const { routerData, location } = this.props;
     const { pathname } = location;
@@ -254,6 +269,7 @@ export default class BasicLayout extends React.PureComponent {
               onMenuClick={this.handleMenuClick}
               onNoticeVisibleChange={this.handleNoticeVisibleChange}
               handleShow={this.handleShow}
+              title={this.getHeadTitle()}
             />
           </Header>
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
