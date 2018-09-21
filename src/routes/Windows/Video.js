@@ -44,7 +44,7 @@ export default class Video extends React.Component {
     loading: false,
     visible: false,
     play: false,
-    url: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4',
+    url: '',
   };
 
   handleCancel = () => {
@@ -55,7 +55,7 @@ export default class Video extends React.Component {
   showModal = () => {
     this.setState({
       visible: true,
-      url: 'http://192.168.18.153/vedio/esxi.mp4',
+      url: 'http://nttl.3322.org/vedio/7-20.mp4',
     });
   };
   onLoad = dp => {
@@ -88,13 +88,13 @@ export default class Video extends React.Component {
 
     return (
       <div>
-        <div className={styles.carouselDemoWrapper}>
+        {/*<div className={styles.carouselDemoWrapper}>
           <Carousel3d className={styles.carouselDemo} childMaxLength={6}>
             {children}
           </Carousel3d>
-        </div>
+        </div>*/}
 
-        {/*<BannerAnim prefixCls={styles.bannerUser} autoPlay autoPlaySpeed={8000} >
+        <BannerAnim prefixCls={styles.bannerUser} autoPlay autoPlaySpeed={8000} >
           {
             list.map((item)=>{
               return(
@@ -119,7 +119,7 @@ export default class Video extends React.Component {
             })
           }
 
-        </BannerAnim>*/}
+        </BannerAnim>
 
         <ModalPlayer
           modalVisible={this.state.visible}
