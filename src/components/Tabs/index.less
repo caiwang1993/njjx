@@ -1,0 +1,42 @@
+@import '~antd/lib/style/themes/default.less';
+
+
+.tabTitleItems {
+  bottom: 0;
+  display: table;
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  table-layout: fixed;
+  font-size: 24px;
+
+}
+.tabTitleItem {
+  display: table-cell;
+  width: 1%;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  background: url('../../assets/tab.png') no-repeat;
+  background-size: cover;
+  color:#abbdd9;
+}
+.tabTitleItem.active{
+  background: url('../../assets/tab_active.png') no-repeat ;
+  background-size: cover;
+
+  color:#fff;
+}
+.tabContentItems{
+  background: url('../../assets/alarm.png') no-repeat;
+  background-size: 100% 100%;
+  padding:20px;
+}
+
+.tabContentItem{
+  display: none;
+}
+
+.tabContentItem.active{
+  display: block;
+}

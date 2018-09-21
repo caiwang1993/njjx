@@ -16,11 +16,11 @@ const menu=[
   {name:'特种装备'},
 ];
 const data = [
-  { year: '1995', value: 17000 },
-  { year: '1996', value: 31056 },
-  { year: '1997', value: 31982 },
-  { year: '1998', value: 32040 },
-  { year: '1999', value: 33233 },
+  { x: '1995', y: 17000 },
+  { x: '1996', y: 31056 },
+  { x: '1997', y: 31982 },
+  { x: '1998', y: 32040 },
+  { x: '1999', y: 33233 },
 ];
 const pic = [pro1,pro2,pro3];
 const DescriptionItem = ({title,content,unit})=>{
@@ -188,7 +188,7 @@ export default class Product extends PureComponent{
             <div className={styles.chartBox}>
               <Card className={styles.chartCard}>
                 <div className={styles.chartCardHead}>近五年销量</div>
-                <Area data={data} color='green' borderColor="#00ff3c" height={250} marginTop={30}/>
+                <Area min='10000' data={data} color='green' borderColor="#00ff3c" height={250} marginTop={30}/>
               </Card>
             </div>
 

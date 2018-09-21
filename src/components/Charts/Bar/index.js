@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Chart, Axis, Tooltip, Geom } from 'bizcharts';
+import { Chart, Axis, Tooltip, Geom, Coord} from 'bizcharts';
 import Debounce from 'lodash-decorators/debounce';
 import Bind from 'lodash-decorators/bind';
 import autoHeight from '../autoHeight';
@@ -55,7 +55,15 @@ class Bar extends Component {
   }
 
   render() {
-    const { height, title, forceFit = true, data, color = '#42febb', padding } = this.props;
+    const {
+      height,
+      title,
+      forceFit = true,
+      data,
+      color = '#42febb',
+      padding,
+      transpose=false,
+    } = this.props;
 
     const { autoHideXLabels } = this.state;
 
@@ -82,7 +90,14 @@ class Bar extends Component {
         value: y,
       }),
     ];
-
+    const grid = {
+      type:  'line', // 网格的类型
+      lineStyle: {
+        stroke: '#b1daff', // 网格线的颜色
+        lineWidth: 0.5, // 网格线的宽度复制代码
+        lineDash: [0, 0]
+      },
+    }
     return (
       <div className={styles.chart} style={{ height }} ref={this.handleRoot}>
         <div ref={this.handleRef}>
@@ -94,6 +109,12 @@ class Bar extends Component {
             data={data}
             padding={padding || 'auto'}
           >
+            {
+              transpose ?
+                <Coord transpose />:''
+            }
+
+
             <Axis
               name="x"
               title={false}
@@ -101,7 +122,7 @@ class Bar extends Component {
               label={label}
               tickLine={autoHideXLabels ? false : {}}
             />
-            <Axis name="y" min={0} label={label} />
+            <Axis grid={grid} name="y" min={0} label={label} />
             <Tooltip showTitle={false} crosshairs={false} />
             <Geom type="interval" position="x*y" color={color} tooltip={tooltip} />
           </Chart>

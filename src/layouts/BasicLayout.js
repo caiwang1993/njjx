@@ -157,7 +157,7 @@ export default class BasicLayout extends React.PureComponent {
       }
     });
     if (currRouterData && currRouterData.name) {
-      title = `${currRouterData.name} - Ant Design Pro`;
+      title = `${currRouterData.name}`;
     }
     return title;
   }
@@ -212,11 +212,7 @@ export default class BasicLayout extends React.PureComponent {
       });
     }
   };
-  handleShow = () => {
-    this.setState({
-      isShow: !this.state.isShow,
-    });
-  };
+
   handleNoticeVisibleChange = visible => {
     const { dispatch } = this.props;
     if (visible) {
@@ -225,7 +221,19 @@ export default class BasicLayout extends React.PureComponent {
       });
     }
   };
-
+  getPosition = (e) => {
+    let x=e.clientX;
+    let y=e.clientY;
+    if(x >=0 && x<80 && y>0 && y<1300){
+      this.setState({
+        isShow: true,
+      });
+    }else{
+      this.setState({
+        isShow: false,
+      });
+    }
+  };
   render() {
     const {
       currentUser,
@@ -239,7 +247,7 @@ export default class BasicLayout extends React.PureComponent {
     const { isMobile: mb } = this.state;
     const baseRedirect = this.getBaseRedirect();
     const layout = (
-      <Layout className={styles.bg}>
+      <Layout className={styles.bg} onMouseMove={this.getPosition}>
         {this.state.isShow ? (
           <SiderMenu
             // 不带Authorized参数的情况下如果没有权限,会强制跳到403界面
@@ -268,7 +276,6 @@ export default class BasicLayout extends React.PureComponent {
               onCollapse={this.handleMenuCollapse}
               onMenuClick={this.handleMenuClick}
               onNoticeVisibleChange={this.handleNoticeVisibleChange}
-              handleShow={this.handleShow}
               title={this.getHeadTitle()}
             />
           </Header>

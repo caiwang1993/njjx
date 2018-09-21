@@ -1,0 +1,121 @@
+@import '~antd/lib/style/themes/default.less';
+
+.AImoitorBox{
+  min-height:900px;
+  background: url('../../assets/AImonitor_bg_.png') no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+
+}
+.container{
+  min-height: 900px;
+  margin-top: 14px;
+}
+.miniBox{
+  width: 184px;
+  height:97px;
+  background: url('../../assets/tmp_box.png') no-repeat;
+  background-size: cover;
+  display: flex;
+  padding:15px 20px;
+}
+.tmp{
+  color:#fff;
+  margin-left: 30px;
+  p{
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  p:nth-child(2){
+    position: relative;
+    top:-12px;
+    font-size: 30px;
+  }
+}
+.miniBox_{
+  width: 368px;
+  height:116px;
+  background: url('../../assets/N.png') no-repeat;
+  background-size: cover;
+  display: flex;
+  padding:30px 20px;
+}
+.N{
+  margin-top:15px;
+}
+.containerBg{
+  width: 375px;
+  height:335px;
+  background: url('../../assets/shipBg.png') no-repeat;
+  background-size: 100% 100%;
+  border: none;
+}
+.title {
+  position: relative;
+  top: -15px;
+  font-size: 24px;
+  font-weight: bold;
+  color:#fff;
+}
+.shipInfo{
+  color:#fff;
+  font-size: 16px;
+  margin-top: 10px;
+  background: url("../../assets/line.png") no-repeat bottom;
+  p{
+    margin-left: 15px;
+  }
+}
+.machineName{
+  font-size: 30px;
+  font-weight: bold;
+  color:#fff;
+}
+.valveBox{
+  width:367px;
+  height:950px;
+  background: url('../../assets/valve.png') no-repeat;
+  background-size: 100% 100%;
+  border:none;
+}
+.valveInfo{
+  color:#fff;
+  font-size: 16px;
+  margin-top: 10px;
+  background: url("../../assets/line.png") no-repeat bottom;
+  margin-bottom: 12px;
+
+}
+.vedioBox{
+  color:#fff;
+  font-size: 16px;
+  display: inline-block;
+  background: url('../../assets/vedio_box.png') no-repeat;
+  background-size: cover;
+  min-width: 129px;
+  text-align: center;
+  padding: 6px 0;
+  position: absolute;
+
+}
+th.tableClass {
+  color:#fff !important;
+  background: #1e87c1 !important;
+  border-bottom-color: transparent !important;
+}
+tr.evenClass{
+   background-color: #105f93 !important;
+   border-bottom-color: transparent !important;
+   color: #fff !important;
+ }
+tr.oddClass{
+  background-color: #166398 !important;
+  border-bottom-color: transparent !important;
+  color: #fff !important;
+}
+
+:global{
+  .ant-table-tbody > tr > td {
+    border-bottom: 1px solid transparent;
+  }
+}

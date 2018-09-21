@@ -6,6 +6,8 @@ import QueueAnim from 'rc-queue-anim';
 import honor from '../../assets/honor.png';
 import honor1 from '../../assets/honor1.jpg';
 import zizhi from '../../assets/zizhi.png';
+import banner2 from '../../assets/banner2.jpg';
+
 import {
   ChartCard,
   yuan,
@@ -25,11 +27,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"*/
 
 const salesData = [
-  { x: '1月', y: 662 },
-  { x: '2月', y: 1071 },
-  { x: '3月', y: 429 },
-  { x: '4月', y: 737 },
-  { x: '5月', y: 804 },
+  { x: '2013', y: 662 },
+  { x: '2014', y: 804 },
+  { x: '2015', y: 429 },
+  { x: '2016', y: 737 },
+  { x: '2017', y: 1071 },
 ];
 
 const salesPieData = [
@@ -182,7 +184,7 @@ export default class Windows extends PureComponent {
                       <div style={{ marginRight: '15px' }}>
                         <img
                           style={{ width: '110px', height: '90px' }}
-                          src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                          src={banner2}
                           alt=""
                         />
                       </div>
@@ -197,11 +199,11 @@ export default class Windows extends PureComponent {
                       <div style={{ marginRight: '15px' }}>
                         <img
                           style={{ width: '110px', height: '90px' }}
-                          src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                          src={banner2}
                           alt=""
                         />
                       </div>
-                      <div className={styles.newsContent}>
+                      <div onClick={this.showModal} className={styles.newsContent}>
                         <p>南极机械举行全员安全教育活动</p>
                         <p>南极机械举行全员安全教育活动南极机械举行全员安</p>
                         <p>2018/8/16</p>
@@ -214,11 +216,11 @@ export default class Windows extends PureComponent {
                       <div style={{ marginRight: '15px' }}>
                         <img
                           style={{ width: '110px', height: '90px' }}
-                          src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                          src={banner2}
                           alt=""
                         />
                       </div>
-                      <div className={styles.newsContent}>
+                      <div onClick={this.showModal} className={styles.newsContent}>
                         <p>南极机械举行全员安全教育活动</p>
                         <p>南极机械举行全员安全教育活动南极机械举行全员安</p>
                         <p>2018/8/16</p>
@@ -229,11 +231,11 @@ export default class Windows extends PureComponent {
                       <div style={{ marginRight: '15px' }}>
                         <img
                           style={{ width: '110px', height: '90px' }}
-                          src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                          src={banner2}
                           alt=""
                         />
                       </div>
-                      <div className={styles.newsContent}>
+                      <div onClick={this.showModal} className={styles.newsContent}>
                         <p>南极机械举行全员安全教育活动</p>
                         <p>南极机械举行全员安全教育活动南极机械举行全员安</p>
                         <p>2018/8/16</p>
@@ -421,21 +423,6 @@ export default class Windows extends PureComponent {
             </QueueAnim>
           </Col>
         </Row>
-        <div>
-          {test.map((item, index) => {
-            return (
-              <div
-                onClick={() => {
-                  this.isClass(index);
-                }}
-                className={this.state.currentIndex === index ? styles.testClass : ''}
-                style={{ width: '150px', height: '150px', border: '1px solid #fff' }}
-              >
-                {item.name}
-              </div>
-            );
-          })}
-        </div>
       </div>
     );
   }

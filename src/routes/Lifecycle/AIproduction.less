@@ -1,0 +1,83 @@
+@import '~antd/lib/style/themes/default.less';
+
+
+
+.AImonitorBg{
+  min-height:318px;
+  background: url('../../assets/AImonitor_bg.png') no-repeat;
+  background-size: 100% 100%;
+  border: none;
+}
+div.title {
+  position: relative;
+  top: -15px;
+  font-size: 24px;
+  font-weight: bold;
+  color:#fff;
+}
+.type{
+  color:#fff;
+  font-size: 24px;
+  font-weight: bold;
+}
+.monitorBg{
+  min-height:630px;
+  background: url('../../assets/monitor_box.png') no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  height:630px;
+}
+.bedMonitor{
+  margin-top:15px;
+  padding:30px 50px;
+  background:url('../../assets/bed_bg.png') no-repeat ;
+  background-size: cover;
+  position: relative;
+}
+.status{
+  position: absolute;
+  right:20px;
+  top:25px;
+}
+.machine{
+  width:242px;
+  height:242px;
+  background: url('../../assets/machine_box.png') no-repeat;
+  padding:20px;
+  margin-top:25px ;
+  margin-left: 20px;
+  color:#fff;
+  font-size: 18px;
+  position: relative;
+}
+.machineStatus{
+  position: absolute;
+  top:15px;
+  right:20px;
+}
+.circle{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.productSelect{
+  :global {
+    .ant-select-selection{
+      background-color: transparent;
+      border-color: #0b95ce;
+      color:#00fff6;
+      font-size: 24px;
+    }
+    .ant-select-arrow{
+      color:#00fff6;
+    }
+
+  }
+}
+
+:global{
+  .ant-select-dropdown-menu-item{
+    background-color: #0b95ce;
+    color:#00fff6;
+  }
+}

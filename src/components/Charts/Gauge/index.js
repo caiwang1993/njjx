@@ -66,7 +66,7 @@ export default class Gauge extends React.Component {
       max,
       end=[100, 0.965],
       tickInterval,
-      unit,
+      unit='',
     } = this.props;
     const cols = {
       value: {

@@ -55,7 +55,7 @@ export default class Video extends React.Component {
   showModal = () => {
     this.setState({
       visible: true,
-      url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
+      url: 'http://192.168.18.153/vedio/esxi.mp4',
     });
   };
   onLoad = dp => {
@@ -67,11 +67,11 @@ export default class Video extends React.Component {
   };
   render() {
     let slides = [
-      'https://picsum.photos/800/300/?random',
-      'https://picsum.photos/800/301/?random ',
+      banner1,
+      /*'https://picsum.photos/800/301/?random ',
       'https://picsum.photos/800/302/?random',
       'https://picsum.photos/800/303/?random',
-      'https://picsum.photos/800/304/?random',
+      'https://picsum.photos/800/304/?random',*/
     ];
 
     const children = slides.map((src, i) => (
@@ -127,10 +127,6 @@ export default class Video extends React.Component {
           Content={
             <div>
               <DPlayer
-                danmaku={{
-                  id: 'demo',
-                  api: 'https://api.prprpr.me/dplayer3/',
-                }}
                 autoplay={true}
                 video={{ url: this.state.url }}
                 onLoad={this.onLoad}
