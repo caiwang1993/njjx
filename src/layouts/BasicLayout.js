@@ -141,14 +141,14 @@ export default class BasicLayout extends React.PureComponent {
       }
     });
     if (currRouterData && currRouterData.name) {
-      title = `南极机械可视化展示 - ${currRouterData.name} `;
+      title = `南极机械大数据平台1.0版 - ${currRouterData.name} `;
     }
     return title;
   };
   getPageTitle() {
     const { routerData, location } = this.props;
     const { pathname } = location;
-    let title = 'Ant Design Pro';
+    let title = '南极机械';
     let currRouterData = null;
     // match params path
     Object.keys(routerData).forEach(key => {
