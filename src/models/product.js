@@ -1,15 +1,12 @@
-import { queryNews, queryNewsInfo} from '../services/api';
+import { queryNews, queryInfo} from '../services/api';
 
 export default {
-  namespace: 'windows',
+  namespace: 'product',
 
   state: {
-    prtkList: [],
-    newList:[],
-    honList:[],
-    aptList:[],
-    newsInfo:[],
     compList:[],
+    pluList:[],
+    pluList_:[],
   },
 
   effects: {
@@ -21,11 +18,11 @@ export default {
       });
       if(callback) callback();
     },
-    *fetchNewsInfo({ payload,callback }, { call, put }) {
-      const response = yield call(queryNewsInfo, payload);
+    *fetchInfo({ payload,callback }, { call, put }) {
+      const response = yield call(queryInfo, payload);
       yield put({
-        type: 'newsInfo',
-        payload: response.newsInfo,
+        type: 'queryInfo',
+        payload: response.pluList,
       });
       if(callback) callback();
     },
@@ -38,10 +35,10 @@ export default {
         ...payload
       };
     },
-    newsInfo(state, action) {
+    queryInfo(state, action) {
       return {
         ...state,
-        newsInfo:action.payload
+        pluList_:action.payload
       };
     },
   },

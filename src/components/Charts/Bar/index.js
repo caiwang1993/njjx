@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Chart, Axis, Tooltip, Geom, Coord} from 'bizcharts';
+import { Chart, Axis, Tooltip, Geom, Coord, Legend} from 'bizcharts';
 import Debounce from 'lodash-decorators/debounce';
 import Bind from 'lodash-decorators/bind';
 import autoHeight from '../autoHeight';
@@ -83,13 +83,7 @@ class Bar extends Component {
         fontWeight: 'bold', // 文本粗细
       },
     };
-    const tooltip = [
-      'x*y',
-      (x, y) => ({
-        name: x,
-        value: y,
-      }),
-    ];
+
     const grid = {
       type:  'line', // 网格的类型
       lineStyle: {
@@ -100,8 +94,8 @@ class Bar extends Component {
     }
     return (
       <div className={styles.chart} style={{ height }} ref={this.handleRoot}>
-        <div ref={this.handleRef}>
-          {title && <h4 style={{ marginBottom: 20 }}>{title}</h4>}
+        <div style={{textAlign:"center",fontSize:24}}>{title}</div>
+        <div ref={this.handleRef} >
           <Chart
             scale={scale}
             height={title ? height - 41 : height}
@@ -123,8 +117,19 @@ class Bar extends Component {
               tickLine={autoHideXLabels ? false : {}}
             />
             <Axis grid={grid} name="y" min={0} label={label} />
-            <Tooltip showTitle={false} crosshairs={false} />
-            <Geom type="interval" position="x*y" color={color} tooltip={tooltip} />
+            <Legend position="bottom" textStyle={{
+              fill: '#fff', // 文本的颜色
+              fontSize: '12', // 文本大小
+              fontWeight: 'bold', // 文本粗细
+            }}/>
+            <Tooltip showTitle={false} crosshairs={{type:'line'}} />
+            <Geom type="interval" position="x*y" color={color}
+                  adjust={[
+              {
+                type: "dodge",
+                marginRatio: 1 / 32
+              }
+            ]}/>
           </Chart>
         </div>
       </div>

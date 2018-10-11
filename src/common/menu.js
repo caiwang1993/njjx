@@ -20,6 +20,7 @@ const menuData = [
     name: '异常页',
     icon: 'warning',
     path: 'exception',
+    hideInMenu:true,
     children: [
       {
         name: '403',

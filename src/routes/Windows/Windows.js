@@ -1,6 +1,6 @@
 import React, { PureComponent, Component } from 'react';
 import { connect } from 'dva';
-import { Row, Card, Col, Carousel, Icon, Modal } from 'antd';
+import { Row, Card, Col, Carousel, Icon, Modal, Skeleton} from 'antd';
 import CardHead from '../../assets/news_head.jpg';
 import QueueAnim from 'rc-queue-anim';
 import honor from '../../assets/honor.png';
@@ -58,9 +58,10 @@ const ModalNews = ({
   modalVisible,
   handleAdd,
   handleModalVisible,
-  content,
+  content='',
   newsTitle,
   newsDate,
+  loading,
 }) => {
   return (
     <Modal
@@ -69,16 +70,23 @@ const ModalNews = ({
       onCancel={handleModalVisible}
       visible={modalVisible}
       footer={null}
+      width={900}
     >
-      <div style={{ textAlign: 'center', color: '#ddd' }}>{newsDate}</div>
-      <div>{content}</div>
+      <Skeleton loading={loading} active>
+        <div style={{ textAlign: 'center', color: '#ddd' }}>{newsDate}</div>
+        <div dangerouslySetInnerHTML={{__html:content}}>
+
+        </div>
+      </Skeleton>
     </Modal>
   );
 };
+
 @connect(({ windows, loading }) => {
   return {
     windows,
-    loading: loading.effects['chart/fetch'],
+    loading: loading.effects['windows/fetchNewsInfo'],
+    loading_: loading.effects['windows/fetch'],
   };
 })
 export default class Windows extends PureComponent {
@@ -86,16 +94,40 @@ export default class Windows extends PureComponent {
     loading: false,
     visible: false,
     currentIndex: 0,
+    content:[],
   };
+
+
+  componentDidMount() {
+
+    this.props.dispatch({
+      type:'windows/fetch',
+      payload:{id:'1'},
+    })
+  }
+
   handleCancel = () => {
     this.setState({ visible: false });
   };
 
-  showModal = () => {
+  showModal = (id,opttime) => {
     this.setState({
       visible: true,
-      //url:'http://static.smartisanos.cn/common/video/t1-ui.mp4',
     });
+    console.log(123);
+    this.props.dispatch({
+      type:'windows/fetchNewsInfo',
+      payload:{id:id,opttime:opttime},
+      callback:()=>{
+        const {windows} = this.props;
+        const {newsInfo} = windows;
+        this.setState({
+
+          content:newsInfo
+        });
+      }
+    });
+
   };
   isClass = index => {
     this.setState({
@@ -103,6 +135,33 @@ export default class Windows extends PureComponent {
     });
   };
   render() {
+    const {windows, loading,loading_} = this.props;
+    const {prtkList,newList, honList, aptList, compList} = windows;
+    const newList_=[];
+    const honList_=[];
+    const aptList_=[];
+    const compList_=[];
+    console.log(honList);
+    for(let i=0,len=newList.length;i<len;i+=2){
+      newList_.push(newList.slice(i,i+2));
+    }
+    for(let i=0,len=honList.length;i<len;i+=2){
+      honList_.push(honList.slice(i,i+2));
+    }
+    for(let i=0,len=aptList.length;i<len;i+=2){
+      aptList_.push(aptList.slice(i,i+2));
+    }
+    for(let i=0,len=compList.length;i<len;i++){
+      compList_.push({
+        x: compList[i].dsc2,
+        y: eval(compList[i].dsc1),
+        }
+      );
+    }
+    const text = prtkList.length? prtkList[0].content :'';
+    function createMarkup() {
+      return {__html: text};
+    }
     const headStyle = {
       background: `url(${CardHead}) no-repeat`,
       backgroundSize: 'cover',
@@ -114,6 +173,9 @@ export default class Windows extends PureComponent {
       modalVisible: this.state.visible,
       handleModalVisible: this.handleCancel,
     };
+    console.log()
+
+
     return (
       <div style={{ marginTop: '23px' }} className={styles.map}>
         <Row>
@@ -124,15 +186,10 @@ export default class Windows extends PureComponent {
                 <div>
                   <Video />
                 </div>
-                <div className={styles.introduction}>
-                  江苏南极机械有限责任公司是一家军民融合型企业，有50年发展历程，为国家火炬计划重点高新技术企业、江苏省高新技术企业、江苏省船舶配套行业重点企业。公司坐落于江苏省泰兴高新区和泰兴大生工业园区，占地面积{' '}
-                  <span>25万平方米</span> ，拥有各类设备 <span>450多台套</span> ，现总资产{' '}
-                  <span>5亿元</span> 。 公司主要生产经营 <span>“南极”</span>{' '}
-                  牌舰船防污染设备、舰船动力系统轴舵系产品及其它舱室机械设备。产品销往全国各大、中船厂，被“南极”长城站、中山站、极地号科考船、远望系列测量船和赴索马里护航编队等国家重点工程广泛选用，并配套出口二十多个国家和地区。
-                  公司科研实力雄厚，被认定为江苏省企业技术中心和江苏省船舶污水序批式膜法处理设备工程技术研究中心，建有目前全球规模最大、技术领先的船舶压载水处理试验中心，和功能齐全的全船污水处理、中间轴承、减振降噪等试验中心，拥有技术人员{' '}
-                  <span>160多人</span>
-                  ，其中高、中级职称 <span>80多人</span> ，有百名以上技师和高级工，与{' '}
-                  <span>20多家</span> 科研院校建立广泛的合作关系。
+                <div className={styles.introduction}
+                     dangerouslySetInnerHTML={createMarkup()}
+                >
+
                 </div>
               </Card>
             </QueueAnim>
@@ -156,7 +213,7 @@ export default class Windows extends PureComponent {
                       <Pie
                         hasLegend
                         //total={() => <Yuan>{salesPieData.reduce((pre, now) => now.y + pre, 0)}</Yuan>}
-                        data={salesPieData}
+                        data={compList_}
                         //valueFormat={value => <Yuan>{value}</Yuan>}
                         height={170}
                         lineWidth={4}
@@ -177,84 +234,53 @@ export default class Windows extends PureComponent {
                 headStyle={headStyle}
                 // bodyStyle={bodyStyle}
                 key="3"
+                loading={loading_}
               >
-                <Carousel autoplay vertical className={styles.slickDots}>
-                  <div>
-                    <div className={styles.newsList}>
-                      <div style={{ marginRight: '15px' }}>
-                        <img
-                          style={{ width: '110px', height: '90px' }}
-                          src={banner2}
-                          alt=""
-                        />
-                      </div>
-                      <div onClick={this.showModal} className={styles.newsContent}>
-                        <p>南极机械举行全员安全教育活动</p>
-                        <p>南极机械举行全员安全教育活动南极机械举行全员安</p>
-                        <p>2018/8/16</p>
-                      </div>
-                    </div>
+                <Carousel  vertical className={styles.slickDots}>
+                  {newList_.map((item)=>{
+                    return(
+                      <div>
+                        {item.map(item=>{
+                          console.log(item);
+                          return(
+                            <div className={styles.newsList}>
+                              <div style={{ marginRight: '15px' }}>
+                                <img
+                                  style={{ width: '110px', height: '90px' }}
+                                  src={item.dsc1}
+                                />
+                              </div>
+                              <div onClick={()=>this.showModal(item.id,item.opttime)} className={styles.newsContent}>
+                                <p>{item.title}</p>
+                                <p>{item.detail}</p>
+                                <p>{item.opttime}</p>
+                              </div>
+                            </div>
+                            )
 
-                    <div className={styles.newsList}>
-                      <div style={{ marginRight: '15px' }}>
-                        <img
-                          style={{ width: '110px', height: '90px' }}
-                          src={banner2}
-                          alt=""
-                        />
+                        })}
                       </div>
-                      <div onClick={this.showModal} className={styles.newsContent}>
-                        <p>南极机械举行全员安全教育活动</p>
-                        <p>南极机械举行全员安全教育活动南极机械举行全员安</p>
-                        <p>2018/8/16</p>
-                      </div>
-                    </div>
-                  </div>
+                    )
+                  })}
 
-                  <div>
-                    <div className={styles.newsList}>
-                      <div style={{ marginRight: '15px' }}>
-                        <img
-                          style={{ width: '110px', height: '90px' }}
-                          src={banner2}
-                          alt=""
-                        />
-                      </div>
-                      <div onClick={this.showModal} className={styles.newsContent}>
-                        <p>南极机械举行全员安全教育活动</p>
-                        <p>南极机械举行全员安全教育活动南极机械举行全员安</p>
-                        <p>2018/8/16</p>
-                      </div>
-                    </div>
-
-                    <div className={styles.newsList}>
-                      <div style={{ marginRight: '15px' }}>
-                        <img
-                          style={{ width: '110px', height: '90px' }}
-                          src={banner2}
-                          alt=""
-                        />
-                      </div>
-                      <div onClick={this.showModal} className={styles.newsContent}>
-                        <p>南极机械举行全员安全教育活动</p>
-                        <p>南极机械举行全员安全教育活动南极机械举行全员安</p>
-                        <p>2018/8/16</p>
-                      </div>
-                    </div>
-                  </div>
                 </Carousel>
-                <ModalNews
-                  {...parentMethods}
-                  newsTitle="泰州市委常委、组织部长张国梁莅临南极机械调研指导"
-                  newsDate="2018年5月25日 16:53"
-                  content="5月24日，泰州市委常委、组织部长张国梁在泰兴市委常委顾刚、鞠林红、泰兴高新区管委会主任陈斌的陪同下莅临南极机械调研指导，倪治忠董事长、倪建峰总经理参加接待并陪同调研。在产品展示区，倪治忠董事长向各位领导介绍了南极产品在全国各大船厂、国家重点舰船和重点工程的运用情况，介绍了央视CCTV纪录片摄制组近期在南极录制“弘扬工匠精神、争做民族品牌”的过程。"
-                />
+                <div>
+
+                  <ModalNews
+                    {...parentMethods}
+                    loading={loading}
+                    newsTitle={this.state.content.length ? this.state.content[0].title : '' }
+                    newsDate={this.state.content.length? this.state.content[0].opttime : ''}
+                    content={this.state.content.length? this.state.content[0].content : ''}
+                  />
+                </div>
+
               </Card>
             </QueueAnim>
           </Col>
           <Col span={5}>
             <QueueAnim type={['bottom', 'top']} delay="400">
-              <Card title="荣誉与资质" key="4" className={styles.newsHead} headStyle={headStyle}>
+              <Card title="荣誉与资质" key="4" className={styles.newsHead} headStyle={headStyle} loading={loading_}>
                 {/*<div  style={{fontSize:'14px'}}>荣誉资质</div>*/}
                 <div style={{ paddingLeft: '60px ', position: 'relative', marginBottom: '10px' }}>
                   <img src={honor} className={styles.honor} />
@@ -273,45 +299,31 @@ export default class Windows extends PureComponent {
                     }}
                   />
                   <Carousel ref={slider => (this.slider = slider)} dots={false}>
-                    <div>
-                      <div>
-                        <img
-                          style={{
-                            width: '120px',
-                            height: '91px',
-                            display: 'inline-block',
-                            marginRight: '5px',
-                          }}
-                          src={honor1}
-                          alt=""
-                        />
-                        <img
-                          style={{ width: '120px', height: '91px', display: 'inline-block' }}
-                          src={honor1}
-                          alt=""
-                        />
-                      </div>
-                    </div>
+                    {
+                      honList_.map(item => {
+                        return(
+                          <div>
+                            {
+                              item.map(item =>{
+                                return(
+                                  <img
+                                    style={{
+                                      width: '120px',
+                                      height: '91px',
+                                      display: 'inline-block',
+                                      marginRight: '5px',
+                                    }}
+                                    src={item.dsc1}
+                                    alt=""
+                                  />
+                                )
+                              })
+                            }
+                          </div>
+                        )
+                      })
+                    }
 
-                    <div>
-                      <div>
-                        <img
-                          style={{
-                            width: '120px',
-                            height: '91px',
-                            display: 'inline-block',
-                            marginRight: '5px',
-                          }}
-                          src={honor1}
-                          alt=""
-                        />
-                        <img
-                          style={{ width: '120px', height: '91px', display: 'inline-block' }}
-                          src={honor1}
-                          alt=""
-                        />
-                      </div>
-                    </div>
                   </Carousel>
                 </div>
 
@@ -332,45 +344,30 @@ export default class Windows extends PureComponent {
                     }}
                   />
                   <Carousel ref={slider1 => (this.slider1 = slider1)} dots={false}>
-                    <div>
-                      <div>
-                        <img
-                          style={{
-                            width: '120px',
-                            height: '91px',
-                            display: 'inline-block',
-                            marginRight: '5px',
-                          }}
-                          src={honor1}
-                          alt=""
-                        />
-                        <img
-                          style={{ width: '120px', height: '91px', display: 'inline-block' }}
-                          src={honor1}
-                          alt=""
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <div>
-                        <img
-                          style={{
-                            width: '120px',
-                            height: '91px',
-                            display: 'inline-block',
-                            marginRight: '5px',
-                          }}
-                          src={honor1}
-                          alt=""
-                        />
-                        <img
-                          style={{ width: '120px', height: '91px', display: 'inline-block' }}
-                          src={honor1}
-                          alt=""
-                        />
-                      </div>
-                    </div>
+                    {
+                      aptList_.map(item => {
+                        return(
+                          <div>
+                            {
+                              item.map(item =>{
+                                return(
+                                  <img
+                                    style={{
+                                      width: '120px',
+                                      height: '91px',
+                                      display: 'inline-block',
+                                      marginRight: '5px',
+                                    }}
+                                    src={item.dsc1}
+                                    alt=""
+                                  />
+                                )
+                              })
+                            }
+                          </div>
+                        )
+                      })
+                    }
                   </Carousel>
                 </div>
               </Card>

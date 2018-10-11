@@ -34,7 +34,7 @@ export default class Lifecycle extends PureComponent {
             exact={item.exact}
           />
         ))}
-        <Redirect exact from="/lifecycle" to="/lifecycle/menu" />
+        <Redirect exact from="/lifecycle" to="/lifecycle/manage" />
         <Route render={NotFound} />
       </Switch>
     );

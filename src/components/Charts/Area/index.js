@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chart, Axis, Tooltip, Geom } from 'bizcharts';
+import { Chart, Axis, Tooltip, Geom, Legend } from 'bizcharts';
 import autoHeight from '../autoHeight';
 import styles from '../index.less';
 
@@ -7,7 +7,7 @@ import styles from '../index.less';
 export default class Area extends React.Component {
   render(){
 
-    const {data,height,marginTop,color,borderColor,min} = this.props;
+    const {data,height,marginTop,color,borderColor,min,title} = this.props;
 
     const cols={
       value: {
@@ -17,13 +17,13 @@ export default class Area extends React.Component {
         range: [ 0 , 1 ]
       }
     };
-    const tooltip = [
+    /*const tooltip = [
       'x*y',
       (x, y) => ({
         name: x,
         value: y,
       }),
-    ];
+    ];*/
     const grid = {
       type:  'line', // 网格的类型
       lineStyle: {
@@ -33,7 +33,8 @@ export default class Area extends React.Component {
       },
     }
     return(
-      <div className={styles.chart} style={{height,marginTop,position:"relative",left:-35}}>
+      <div className={styles.chart} style={{height,marginTop,position:"relative"}}>
+        <div style={{textAlign:"center",fontSize:24}}>{title}</div>
         <Chart height={height} data={data} scale={cols} forceFit>
           <Axis name="x" label={{
             textStyle: {
@@ -52,9 +53,14 @@ export default class Area extends React.Component {
             },
 
           }}/>
+          <Legend position="bottom"  textStyle={{
+            fill: '#fff', // 文本的颜色
+            fontSize: '12', // 文本大小
+            fontWeight: 'bold', // 文本粗细
+          }}/>
           <Tooltip crosshairs={{type:'line'}} showTitle={false}/>
-          <Geom type="area" position="x*y" color={color} tooltip={tooltip} shape='smooth'/>
-          <Geom type="line" position="x*y" size={2} color={borderColor} tooltip={false} shape='smooth'/>
+          <Geom type="area" position="x*y" color={color}  shape="smooth"/>
+          <Geom type="line" position="x*y" size={2} color={borderColor} tooltip={false} shape="smooth"/>
         </Chart>
       </div>
     )

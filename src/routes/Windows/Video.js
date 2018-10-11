@@ -36,7 +36,7 @@ const list = [banner1, banner2, banner3];
 @connect(({ windows, loading }) => {
   return {
     windows,
-    loading: loading.effects['chart/fetch'],
+    loading: loading.effects['windows/fetch'],
   };
 })
 export default class Video extends React.Component {
@@ -46,17 +46,27 @@ export default class Video extends React.Component {
     play: false,
     url: '',
   };
-
   handleCancel = () => {
     this.setState({ visible: false });
     this.pause();
   };
 
   showModal = () => {
-    this.setState({
-      visible: true,
-      url: 'http://nttl.3322.org/vedio/7-20.mp4',
+    this.props.dispatch({
+      type:'windows/fetch',
+      payload:{id:'1'},
+      callback:()=>{
+        const {windows} = this.props;
+        const {prtkList} = windows;
+        console.log(prtkList);
+        this.setState({
+          visible: true,
+          //url: 'http://nttl.3322.org/vedio/7-20.mp4',
+          url:prtkList[0].dsc1
+        });
+      }
     });
+
   };
   onLoad = dp => {
     this.dp = dp;

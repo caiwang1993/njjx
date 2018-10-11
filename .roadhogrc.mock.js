@@ -9,7 +9,7 @@ import { format, delay } from 'roadhog-api-doc';
 
 // 是否禁用代理
 const noProxy = process.env.NO_PROXY === 'true';
-
+const url = 'http://192.168.18.164:8080';
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 const proxy = {
   // 支持值为 Object 和 Array
@@ -135,6 +135,10 @@ const proxy = {
       path: '/base/category/list',
     });
   },
+  'POST /api/News/query': url,
+  'POST /api/News/queryNewsInfo': url,
+  //产品中心
+  'POST /api/News/queryInfo': url
 };
 
 export default (noProxy ? {} : delay(proxy, 1000));

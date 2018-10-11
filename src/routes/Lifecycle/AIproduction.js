@@ -1,4 +1,3 @@
-
 import React ,{PureComponent} from 'react';
 import {Row,Col, Card, Select} from 'antd';
 import { Circle } from 'rc-progress';
@@ -14,22 +13,49 @@ import ProductionProgress from 'components/ProductionProgress';
 import MonitorStatus from 'components/MonitorStatus';
 import {Pie} from 'components/Charts';
 const Option = Select.Option;
-const monitor = [];
-const bed=[];
+const monitor = [
+  {name:'制氮装置'},
+  {name:'PV阀'},
+  {name:'多级立式离心泵'},
+  {name:'立式海水离心泵'},
+  {name:'气动蝶阀'},
+  {name:'电动球阀'},
+  {name:'电磁流量计'},
+  {name:'压力变送器'},
+  {name:'压力表'},
+];
+const monitor_ = [
+  {name:'滤气单元'},
+  {name:'膜分离单元'},
+  {name:'控制单元'},
+];
+const bed=[
+  {name:'VL-1000 ATC 数控立车'},
+  {name:'CK5225G 数控车床'},
+  {name:'CK61125数控车床'},
+];
+const machine=[
+  {name:'焊接机器人1'},
+  {name:'焊接机器人2'},
+  {name:'焊接机器人3'},
+  {name:'焊接机器人4'},
+];
 for(let i =0;i<9;i++){
-  monitor.push({
-    name:`零件${i+1}`,
-    value:Math.floor(Math.random()*100)
-  })
-}
-for(let i =0;i<5;i++){
-  bed.push({
-    name:`零件${i+1}`,
-    value:Math.floor(Math.random()*100),
-    status:Math.floor(Math.random()*4+1)
-  })
-}
+  monitor[i].value=Math.floor(Math.random()*100)
 
+}
+for(let i =0;i<3;i++){
+  monitor_[i].value=Math.floor(Math.random()*100)
+
+}
+for(let i =0;i<3;i++){
+  bed[i].value=Math.floor(Math.random()*3+98);
+  bed[i].status=1;
+}
+for(let i =0;i<4;i++){
+  machine[i].value=Math.floor(Math.random()*3+98);
+  machine[i].status=1;
+}
 export default class AImonitor extends PureComponent{
   render() {
     const progress=30;
@@ -56,7 +82,7 @@ export default class AImonitor extends PureComponent{
                 <ProductionProgress
                   width="1718px"
                   progress={progress}
-                  active={true}/>
+                  active={true} />
                 <div style={{position:'absolute',left:-21}}>
                   <img src={start}  />
                 </div>
@@ -90,29 +116,42 @@ export default class AImonitor extends PureComponent{
         <Row gutter={16}>
           <Col span={8}>
             <Card className={styles.monitorBg}>
-              <div className={styles.title}>零件使用监测</div>
-              {
-                monitor.map((item)=>{
-                  return(
-                    <div style={{marginTop:30}}>
-                      <ProductionProgress
-                        width="408px"
-                        progress={item.value}
-                        title={item.name}
-                        percent={`${item.value}%`}
-                        active={true}/>
-                    </div>
-                  )
-                })
-              }
-              {/*<div style={{marginTop:30}}>
-                <ProductionProgress
-                  width="408px"
-                  progress={80}
-                  title='零件1'
-                  percent={`80%`}
-                  active={true}/>
-              </div>*/}
+              <div className={styles.title}>重要零件生产进度</div>
+                <div className={styles.buy}>
+                  <div className={styles.buyTitle}>采购件</div>
+                  {
+                    monitor.map((item)=>{
+                      return(
+                        <div>
+                          <ProductionProgress
+                            width="308px"
+                            progress={item.value}
+                            title={item.name}
+                            percent={`${item.value}%`}
+                            active={true}/>
+                        </div>
+                      )
+                    })
+                  }
+                </div>
+
+              <div className={styles.do}>
+                <div className={styles.buyTitle}>加工件</div>
+                {
+                  monitor_.map((item)=>{
+                    return(
+                      <div>
+                        <ProductionProgress
+                          width="308px"
+                          progress={item.value}
+                          title={item.name}
+                          percent={`${item.value}%`}
+                          active={true}/>
+                      </div>
+                    )
+                  })
+                }
+              </div>
             </Card>
           </Col>
           <Col span={8}>
@@ -123,9 +162,10 @@ export default class AImonitor extends PureComponent{
                   return(
                     <div  className={styles.bedMonitor}>
                       <ProductionProgress
-                        width="208px"
+                        width="108px"
                         progress={item.value}
                         title={item.name}
+                        titleWidth={200}
                         percent={`${item.value}%`}
                         active={true}/>
                       <div className={styles.status}>
@@ -155,29 +195,36 @@ export default class AImonitor extends PureComponent{
             <Card className={styles.monitorBg}>
               <div className={styles.title}>机器使用监测</div>
               <Row gutter={16}>
-                <Col span={12}>
-                  <div className={styles.machine}>
-                    <span>机器1</span>
-                    <div className={styles.machineStatus}>
-                      <MonitorStatus
-                        title={'正常运行'}
-                        status={'success'}
-                      />
-                    </div>
-                    <div className={styles.circle}>
-                      <Pie
-                        animate={true}
-                        color={`l (0) 0:#46f79c   1:#45cbfa`}
-                        percent={70}
-                        total="70%"
-                        subTitle='使用率'
-                        height={130}
-                        lineWidth={2}
-                      />
-                    </div>
-                  </div>
-                </Col>
-                <Col span={12}>
+                {
+                  machine.map(item=>{
+                    return(
+                      <Col span={12}>
+                        <div className={styles.machine}>
+                          <span>{item.name}</span>
+                          <div className={styles.machineStatus}>
+                            <MonitorStatus
+                              title={'正常运行'}
+                              status={'success'}
+                            />
+                          </div>
+                          <div className={styles.circle}>
+                            <Pie
+                              animate={true}
+                              color={`l (0) 0:#46f79c   1:#45cbfa`}
+                              percent= {item.value}
+                              total= {`${item.value}%`}
+                              subTitle='使用率'
+                              height={130}
+                              lineWidth={2}
+                            />
+                          </div>
+                        </div>
+                      </Col>
+                    )
+                  })
+                }
+
+                {/*<Col span={12}>
                   <div className={styles.machine}>
                     <span>机器2</span>
                     <div className={styles.machineStatus}>
@@ -244,7 +291,7 @@ export default class AImonitor extends PureComponent{
                       />
                     </div>
                   </div>
-                </Col>
+                </Col>*/}
               </Row>
             </Card>
           </Col>

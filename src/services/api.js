@@ -77,3 +77,21 @@ export async function fakeRegister(params) {
 export async function queryNotices() {
   return request('/api/notices');
 }
+export async function queryNews(params) {
+  return request('/api/News/query',{
+    method:"POST",
+    body: params,
+  });
+}
+export async function queryNewsInfo(params) {
+  return request('/api/News/queryNewsInfo',{
+    method:"POST",
+    body: params,
+  });
+}
+export async function queryInfo(params) {
+  return request('/api/News/queryInfo',{
+    method:"POST",
+    body: params,
+  });
+}

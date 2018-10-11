@@ -78,10 +78,14 @@ export const getRouterData = app => {
       component: dynamicWrapper(app, ['windows'], () => import('../routes/Windows/Windows')),
     },
     '/product': {
-      component: dynamicWrapper(app, [], () => import('../routes/Product/Product')),
+      component: dynamicWrapper(app, ['product'], () => import('../routes/Product/Product')),
     },
     '/lifecycle': {
       component: dynamicWrapper(app, ['lifecycle'], () => import('../routes/Lifecycle/index')),
+    },
+    '/lifecycle/manage': {
+      name: '客户项目管理',
+      component: dynamicWrapper(app, ['lifecycle'], () => import('../routes/Lifecycle/LifecycleManage')),
     },
     '/lifecycle/menu': {
       name: '压载水产品全生命周期服务',

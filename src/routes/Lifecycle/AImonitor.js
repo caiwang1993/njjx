@@ -100,11 +100,13 @@ console.log(valve);
 export default class AIproduction extends PureComponent{
   render() {
     return (
-      <div className={styles.AImoitorBox}>
-        {/*<video autoPlay loop="loop">
-          <source src={vedio} type="video/mp4" />
-        </video>*/}
-        <Row gutter={16} className={styles.container}>
+      <div className={styles.AImoitorBox} >
+
+        {/*嵌入*/}
+        <iframe style={{width:1960,height:980}}
+                src="http://jsnj.yunzutai.com/app/main/devicesMonitor?id=6945" />
+
+        {/*<Row gutter={16} className={styles.container}>
 
           <Col span={5} >
             <Row gutter={16}>
@@ -191,14 +193,14 @@ export default class AIproduction extends PureComponent{
                         )
                       })
                     }
-                    {/*<Row className={styles.shipInfo}>
+                    <Row className={styles.shipInfo}>
                       <Col span={12}>
                         <p>船名</p>
                       </Col>
                       <Col span={12}>
                         <p style={{color:'#00e4ff'}}>南极号</p>
                       </Col>
-                    </Row>*/}
+                    </Row>
 
                   </div>
                 </Card>
@@ -290,7 +292,7 @@ export default class AIproduction extends PureComponent{
               }
             </Card>
           </Col>
-        </Row>
+        </Row>*/}
       </div>
     )
   }

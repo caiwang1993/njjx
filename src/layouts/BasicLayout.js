@@ -279,7 +279,7 @@ export default class BasicLayout extends React.PureComponent {
               title={this.getHeadTitle()}
             />
           </Header>
-          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+          <Content style={{ margin: '24px 0px 0', height: '100%' }}>
             <Switch>
               {redirectData.map(item => (
                 <Redirect key={item.from} exact from={item.from} to={item.to} />
