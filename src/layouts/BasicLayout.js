@@ -121,9 +121,6 @@ export default class BasicLayout extends React.PureComponent {
       });
     });
     const { dispatch } = this.props;
-    dispatch({
-      type: 'user/fetchCurrent',
-    });
   }
 
   componentWillUnmount() {
@@ -267,7 +264,7 @@ export default class BasicLayout extends React.PureComponent {
         <Layout>
           <Header style={{ padding: 0 }}>
             <GlobalHeader
-              currentUser={currentUser}
+
               fetchingNotices={fetchingNotices}
               notices={notices}
               collapsed={collapsed}
