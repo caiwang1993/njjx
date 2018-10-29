@@ -46,12 +46,7 @@ export default class Video extends React.Component {
     play: false,
     url: '',
   };
-  handleCancel = () => {
-    this.setState({ visible: false });
-    this.pause();
-  };
-
-  showModal = () => {
+  componentDidMount(){
     this.props.dispatch({
       type:'windows/fetch',
       payload:{id:'1'},
@@ -60,12 +55,21 @@ export default class Video extends React.Component {
         const {prtkList} = windows;
         console.log(prtkList);
         this.setState({
-          visible: true,
-          //url: 'http://nttl.3322.org/vedio/7-20.mp4',
           url:prtkList[0].dsc1
         });
       }
     });
+  }
+  handleCancel = () => {
+    this.setState({ visible: false });
+    this.pause();
+  };
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+
 
   };
   onLoad = dp => {

@@ -9,10 +9,12 @@ import { getRoutes } from '../../utils/utils';
 import styles from './LifecycleManage.less';
 
 const inItem = [
+
+  {name:'福建省轮船总公司'},
   {name:'上海船运公司'},
   {name:'天津大海港湾船务有限公司'},
   {name:'青岛船运公司'},
-  {name:'上海船舶运输集团'}
+  {name:'上海船舶运输集团'},
 ];
 const project = [
   {name:'项目1'},
@@ -29,10 +31,12 @@ export default class LifecycleManage extends PureComponent {
     currentIndexOut: -1,
     showIn:false,
     showOut:false,
+    showDetail:false,
   };
   isClass=(index)=>{
     this.setState({
       currentIndexIn: index,
+      showDetail:true,
     });
   };
   isClassOut=(index)=>{
@@ -106,27 +110,34 @@ export default class LifecycleManage extends PureComponent {
           <Card className={styles.cardBg}>
 
             <div className={styles.title}>项目明细</div>
-            <p className={styles.iconLeft}>
-              <i className={styles.name}></i>
-              <span>客户名称:</span>
-              <span>天津大海港湾船务有限公司</span>
-            </p>
+            {
+              this.state.showDetail ?
+                <div>
 
-            <p  className={styles.iconLeft}>
-              <i className={styles.address}></i>
-              <span>地址:</span>
-              <span>天津大海港湾船务有限公司</span>
-            </p>
+                  <p className={styles.iconLeft}>
+                    <i className={styles.name}></i>
+                    <span>客户名称:</span>
+                    <span>福建省轮船总公司</span>
+                  </p>
 
-            <div>
-              {
-                project.map(item=>{
-                  return(
-                    <div onClick={this.jumpTo} className={styles.project}>{item.name}</div>
-                  )
-                })
-              }
-            </div>
+                  <p  className={styles.iconLeft}>
+                    <i className={styles.address}></i>
+                    <span>地址:</span>
+                    <span>江苏江阴</span>
+                  </p>
+
+                  <div>
+                    {
+                      project.map(item=>{
+                        return(
+                          <div onClick={this.jumpTo} className={styles.project}>{item.name}</div>
+                        )
+                      })
+                    }
+                  </div>
+                </div> : ''
+            }
+
           </Card>
         </div>
 

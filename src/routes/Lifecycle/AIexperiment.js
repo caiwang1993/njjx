@@ -11,39 +11,197 @@ import exp from '../../assets/USCGexp.png';
 import luji_exp from '../../assets/luji_exp.png';
 import shichuang from '../../assets/shichuang_exp.png';
 const exp1 = [
-  {type:"原水实验", x: '1', y: 20 },
-  {type:"原水实验", x: '2', y: 10},
-  {type:"原水实验", x: '3', y: 50},
-  {type:"原水实验", x: '4', y: 75 },
-  {type:"原水实验", x: '5', y: 13},
-  {type:"原水实验", x: '6', y: 24 },
-  {type:"原水实验", x: '7', y: 13 },
+  {type:"原水实验", x: '1', y: 0.91 },
+  {type:"原水实验", x: '2', y: 0.96},
+  {type:"原水实验", x: '3', y: 0.95},
+  {type:"原水实验", x: '4', y: 0.89},
+  {type:"原水实验", x: '5', y: 0.91},
 
-  {type:"排放水实验", x: '1', y: 60},
-  {type:"排放水实验", x: '2', y: 22},
-  {type:"排放水实验", x: '3', y: 12},
-  {type:"排放水实验", x: '4', y: 45},
-  {type:"排放水实验", x: '5', y: 26},
-  {type:"排放水实验", x: '6', y: 68},
-  {type:"排放水实验", x: '7', y: 19},
+
+  {type:"排放水实验", x: '1', y: 1},
+  {type:"排放水实验", x: '2', y: 1},
+  {type:"排放水实验", x: '3', y: 2},
+  {type:"排放水实验", x: '4', y: 1},
+  {type:"排放水实验", x: '5', y: 1},
 ];
+const luji2 = [
+  {type:"原水实验", x: '1', y: 0 },
+  {type:"原水实验", x: '2', y: 0},
+  {type:"原水实验", x: '3', y: 0},
+  {type:"原水实验", x: '4', y: 0},
+  {type:"原水实验", x: '5', y: 0},
+
+
+  {type:"排放水实验", x: '1', y: 0},
+  {type:"排放水实验", x: '2', y: 0},
+  {type:"排放水实验", x: '3', y: 0},
+  {type:"排放水实验", x: '4', y: 0},
+  {type:"排放水实验", x: '5', y: 0},
+];
+const luji3 = [
+  {type:"原水实验", x: '1', y: 34 },
+  {type:"原水实验", x: '2', y: 35},
+  {type:"原水实验", x: '3', y: 31},
+  {type:"原水实验", x: '4', y: 31},
+  {type:"原水实验", x: '5', y: 36},
+
+
+  {type:"排放水实验", x: '1', y: 0},
+  {type:"排放水实验", x: '2', y: 0},
+  {type:"排放水实验", x: '3', y: 0},
+  {type:"排放水实验", x: '4', y: 0},
+  {type:"排放水实验", x: '5', y: 0},
+];
+const luji4 = [
+  {type:"原水实验", x: '1', y: 3.9},
+  {type:"原水实验", x: '2', y: 2.2},
+  {type:"原水实验", x: '3', y: 3.0},
+  {type:"原水实验", x: '4', y: 3.4},
+  {type:"原水实验", x: '5', y: 4.0},
+
+
+  {type:"排放水实验", x: '1', y: 0},
+  {type:"排放水实验", x: '2', y: 0},
+  {type:"排放水实验", x: '3', y: 0},
+  {type:"排放水实验", x: '4', y: 0},
+  {type:"排放水实验", x: '5', y: 0},
+];
+const luji5 = [
+  {type:"原水实验", x: '1', y: 2.24 },
+  {type:"原水实验", x: '2', y: 3.01},
+  {type:"原水实验", x: '3', y: 3.0},
+  {type:"原水实验", x: '4', y: 2.73},
+  {type:"原水实验", x: '5', y: 3.27},
+
+
+  {type:"排放水实验", x: '1', y: 0.1},
+  {type:"排放水实验", x: '2', y: 0.23},
+  {type:"排放水实验", x: '3', y: 0.6},
+  {type:"排放水实验", x: '4', y: 0.3},
+  {type:"排放水实验", x: '5', y: 0.2},
+];
+const luji1_ = [
+  {type:"原水实验", x: '1', y: 1.50 },
+  {type:"原水实验", x: '2', y: 1.79},
+  {type:"原水实验", x: '3', y: 1.79},
+  {type:"原水实验", x: '4', y: 1.80},
+  {type:"原水实验", x: '5', y: 1.81},
+
+
+  {type:"排放水实验", x: '1', y: 19},
+  {type:"排放水实验", x: '2', y: 2},
+  {type:"排放水实验", x: '3', y: 2},
+  {type:"排放水实验", x: '4', y: 2},
+  {type:"排放水实验", x: '5', y: 2},
+];
+const luji2_ = [
+  {type:"原水实验", x: '1', y: 0 },
+  {type:"原水实验", x: '2', y: 0},
+  {type:"原水实验", x: '3', y: 0},
+  {type:"原水实验", x: '4', y: 0},
+  {type:"原水实验", x: '5', y: 0},
+
+
+  {type:"排放水实验", x: '1', y: 0},
+  {type:"排放水实验", x: '2', y: 0},
+  {type:"排放水实验", x: '3', y: 0},
+  {type:"排放水实验", x: '4', y: 0},
+  {type:"排放水实验", x: '5', y: 0},
+];
+const luji3_ = [
+  {type:"原水实验", x: '1', y: 63 },
+  {type:"原水实验", x: '2', y: 62},
+  {type:"原水实验", x: '3', y: 65},
+  {type:"原水实验", x: '4', y: 67},
+  {type:"原水实验", x: '5', y: 65},
+
+
+  {type:"排放水实验", x: '1', y: 1},
+  {type:"排放水实验", x: '2', y: 1},
+  {type:"排放水实验", x: '3', y: 1},
+  {type:"排放水实验", x: '4', y: 2},
+  {type:"排放水实验", x: '5', y: 0},
+];
+const luji4_ = [
+  {type:"原水实验", x: '1', y: 5.0 },
+  {type:"原水实验", x: '2', y: 5.5},
+  {type:"原水实验", x: '3', y: 6.1},
+  {type:"原水实验", x: '4', y: 6.1},
+  {type:"原水实验", x: '5', y: 3.8},
+
+
+  {type:"排放水实验", x: '1', y: 0},
+  {type:"排放水实验", x: '2', y: 0},
+  {type:"排放水实验", x: '3', y: 0},
+  {type:"排放水实验", x: '4', y: 0},
+  {type:"排放水实验", x: '5', y: 0},
+];
+const luji5_ = [
+  {type:"原水实验", x: '1', y: 4.24},
+  {type:"原水实验", x: '2', y: 4.24},
+  {type:"原水实验", x: '3', y: 4.63},
+  {type:"原水实验", x: '4', y: 4.63},
+  {type:"原水实验", x: '5', y: 5.06},
+
+
+  {type:"排放水实验", x: '1', y: 0.57},
+  {type:"排放水实验", x: '2', y: 0.57},
+  {type:"排放水实验", x: '3', y: 0.88},
+  {type:"排放水实验", x: '4', y: 0.88},
+  {type:"排放水实验", x: '5', y: 0.46},
+];
+
 const exp2 = [
-  {type:"NB-200", x: '1', y: 20 },
-  {type:"NB-200", x: '2', y: 10},
-  {type:"NB-200", x: '3', y: 50},
-  {type:"NB-200", x: '4', y: 75 },
-  {type:"NB-200", x: '5', y: 13},
-  {type:"NB-200", x: '6', y: 24 },
-  {type:"NB-200", x: '7', y: 13 },
+  {type:"NB-200", x: '1', y: 0 },
+  {type:"NB-200", x: '2', y: 13},
+  {type:"NB-200", x: '3', y: 12},
 
-  {type:"NB-800", x: '1', y: 60},
-  {type:"NB-800", x: '2', y: 22},
-  {type:"NB-800", x: '3', y: 12},
-  {type:"NB-800", x: '4', y: 45},
-  {type:"NB-800", x: '5', y: 26},
-  {type:"NB-800", x: '6', y: 68},
-  {type:"NB-800", x: '7', y: 19},
+
+  {type:"NB-800", x: '1', y: 11},
+  {type:"NB-800", x: '2', y: 12},
+  {type:"NB-800", x: '3', y: 9},
 ];
+const shichuan2 = [
+  {type:"NB-200", x: '1', y: 0 },
+  {type:"NB-200", x: '2', y: 0},
+  {type:"NB-200", x: '3', y: 0},
+
+
+  {type:"NB-800", x: '1', y: 0},
+  {type:"NB-800", x: '2', y: 0},
+  {type:"NB-800", x: '3', y: 0},
+];
+const shichuan3 = [
+  {type:"NB-200", x: '1', y: 0},
+  {type:"NB-200", x: '2', y: 0},
+  {type:"NB-200", x: '3', y: 3},
+
+
+  {type:"NB-800", x: '1', y: 0},
+  {type:"NB-800", x: '2', y: 2},
+  {type:"NB-800", x: '3', y: 7},
+];
+const shichuan4 = [
+  {type:"NB-200", x: '1', y: 0},
+  {type:"NB-200", x: '2', y: 0},
+  {type:"NB-200", x: '3', y: 3},
+
+
+  {type:"NB-800", x: '1', y: 0},
+  {type:"NB-800", x: '2', y: 0},
+  {type:"NB-800", x: '3', y: 0},
+];
+const shichuan5 = [
+  {type:"NB-200", x: '1', y: 0.22},
+  {type:"NB-200", x: '2', y: 0.46},
+  {type:"NB-200", x: '3', y: 0.75},
+
+
+  {type:"NB-800", x: '1', y: 1.9},
+  {type:"NB-800", x: '2', y: 0},
+  {type:"NB-800", x: '3', y: 2.6},
+];
+
 export default class AIexperiment extends PureComponent{
   state={
     show:false,
@@ -110,7 +268,7 @@ export default class AIexperiment extends PureComponent{
                               <div className={styles.expUp}>
                                 <Bar
                                   title="霍乱菌"
-                                  data={exp1}
+                                  data={luji2}
                                   color={['type',
                                     ['l (270) 0:#042b33 0.5:#1ae3bf  1:#43ffba',
                                     'l (270) 0:#0084ff   1:#00e4ff']]}
@@ -130,7 +288,7 @@ export default class AIexperiment extends PureComponent{
                                   title="肠球菌"
                                   transpose={true}
                                   height={250}
-                                  data={exp1}
+                                  data={luji3}
                                   color={['type',
                                     ['l (270) 0:#042b33 0.5:#1ae3bf  1:#43ffba',
                                       'l (270) 0:#0084ff   1:#00e4ff']]}
@@ -145,7 +303,7 @@ export default class AIexperiment extends PureComponent{
                                 <Bar
 
                                   title="大于50微米的生物"
-                                  data={exp1}
+                                  data={luji4}
                                   color={['type',
                                     ['l (270) 0:#042b33 0.5:#1ae3bf  1:#43ffba',
                                       'l (270) 0:#0084ff   1:#00e4ff']]}
@@ -160,9 +318,9 @@ export default class AIexperiment extends PureComponent{
                             <Col span="8">
                               <div className={styles.expDown}>
                                 <Area
-                                  title="大肠杆菌"
+                                  title="10微米~50微米生物"
                                   min='0'
-                                  data={exp1}
+                                  data={luji5}
                                   color='type'
                                   borderColor="type"
                                   height={259}
@@ -189,7 +347,7 @@ export default class AIexperiment extends PureComponent{
                                       <Area
                                         title="大肠杆菌"
                                         min='0'
-                                        data={exp1}
+                                        data={luji1_}
                                         color='type'
                                         borderColor="type"
                                         height={259}
@@ -204,7 +362,7 @@ export default class AIexperiment extends PureComponent{
                                     <div className={styles.expUp}>
                                       <Bar
                                         title="霍乱菌"
-                                        data={exp1}
+                                        data={luji2_}
                                         color={['type',
                                           ['l (270) 0:#042b33 0.5:#1ae3bf  1:#43ffba',
                                             'l (270) 0:#0084ff   1:#00e4ff']]}
@@ -224,7 +382,7 @@ export default class AIexperiment extends PureComponent{
                                         title="肠球菌"
                                         transpose={true}
                                         height={250}
-                                        data={exp1}
+                                        data={luji3_}
                                         color={['type',
                                           ['l (270) 0:#042b33 0.5:#1ae3bf  1:#43ffba',
                                             'l (270) 0:#0084ff   1:#00e4ff']]}
@@ -239,7 +397,7 @@ export default class AIexperiment extends PureComponent{
                                       <Bar
 
                                         title="大于50微米的生物"
-                                        data={exp1}
+                                        data={luji4_}
                                         color={['type',
                                           ['l (270) 0:#042b33 0.5:#1ae3bf  1:#43ffba',
                                             'l (270) 0:#0084ff   1:#00e4ff']]}
@@ -254,9 +412,9 @@ export default class AIexperiment extends PureComponent{
                                   <Col span="8">
                                     <div className={styles.expDown}>
                                       <Area
-                                        title="大肠杆菌"
+                                        title="10微米~50微米的生物"
                                         min='0'
-                                        data={exp1}
+                                        data={luji5_}
                                         color='type'
                                         borderColor="type"
                                         height={259}
@@ -302,7 +460,7 @@ export default class AIexperiment extends PureComponent{
                               <div className={styles.expUp}>
                                 <Bar
                                   title="霍乱菌"
-                                  data={exp2}
+                                  data={shichuan2}
                                   color={['type',
                                     ['l (270) 0:#042b33 0.5:#1ae3bf  1:#43ffba',
                                       'l (270) 0:#0084ff   1:#00e4ff']]}
@@ -322,7 +480,7 @@ export default class AIexperiment extends PureComponent{
                                   title="肠球菌"
                                   transpose={true}
                                   height={250}
-                                  data={exp2}
+                                  data={shichuan3}
                                   color={['type',
                                     ['l (270) 0:#042b33 0.5:#1ae3bf  1:#43ffba',
                                       'l (270) 0:#0084ff   1:#00e4ff']]}
@@ -337,7 +495,7 @@ export default class AIexperiment extends PureComponent{
                                 <Bar
 
                                   title="大于50微米的生物"
-                                  data={exp2}
+                                  data={shichuan4}
                                   color={['type',
                                     ['l (270) 0:#042b33 0.5:#1ae3bf  1:#43ffba',
                                       'l (270) 0:#0084ff   1:#00e4ff']]}
@@ -352,9 +510,9 @@ export default class AIexperiment extends PureComponent{
                             <Col span="8">
                               <div className={styles.expDown}>
                                 <Area
-                                  title="大肠杆菌"
+                                  title="10微米~50微米生物"
                                   min='0'
-                                  data={exp2}
+                                  data={shichuan5}
                                   color='type'
                                   borderColor="type"
                                   height={259}

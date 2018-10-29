@@ -47,7 +47,7 @@ export default class LoginPage extends Component {
     return (
       <div className={styles.main}>
         <Login defaultActiveKey={type} onTabChange={this.onTabChange} onSubmit={this.handleSubmit}>
-          <UserName name="userName" placeholder="admin/user" />
+          <UserName name="username" placeholder="admin/user" />
           <Password name="password" placeholder="888888/123456" />
 
           <Submit loading={submitting}>登录</Submit>

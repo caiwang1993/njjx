@@ -20,14 +20,14 @@ ul{
     background-size: cover;
     display: flex;
     justify-content: flex-end;
-    padding: 10px 80px;
+    padding: 10px 108px;
     margin-bottom: 28px;
   }
   li.right{
     background: url('../../assets/AIdesign_box_right.png') no-repeat;
     background-size: cover;
 
-    padding: 10px 80px;
+    padding: 10px 50px;
     margin-bottom: 28px;
   }
   .title{
@@ -51,3 +51,32 @@ ul{
    height:258px;
 
  }
+.type{
+  color:#fff;
+  font-size: 24px;
+  font-weight: bold;
+  position: absolute;
+  top:50px;
+  left:200px;
+}
+.productSelect{
+  :global {
+    .ant-select-selection{
+      background-color: transparent;
+      border-color: #0b95ce;
+      color:#00fff6;
+      font-size: 24px;
+    }
+    .ant-select-arrow{
+      color:#00fff6;
+    }
+
+  }
+}
+
+:global{
+  .ant-select-dropdown-menu-item{
+    background-color: #0b95ce;
+    color:#00fff6;
+  }
+}

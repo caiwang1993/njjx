@@ -138,7 +138,8 @@ const proxy = {
   'POST /api/News/query': url,
   'POST /api/News/queryNewsInfo': url,
   //产品中心
-  'POST /api/News/queryInfo': url
+  'POST /api/News/queryInfo': url,
+  'POST /api/auth/signin': url,
 };
 
 export default (noProxy ? {} : delay(proxy, 1000));

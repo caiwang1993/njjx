@@ -8,6 +8,8 @@ import honor1 from '../../assets/honor1.jpg';
 import zizhi from '../../assets/zizhi.png';
 import banner2 from '../../assets/banner2.jpg';
 
+import Zmage from 'react-zmage'
+
 import {
   ChartCard,
   yuan,
@@ -25,6 +27,8 @@ import styles from './Windows.less';
 /*import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"*/
+import Viewer from 'react-viewer';
+import 'react-viewer/dist/index.css';
 
 const salesData = [
   { x: '2013', y: 662 },
@@ -236,7 +240,7 @@ export default class Windows extends PureComponent {
                 key="3"
                 loading={loading_}
               >
-                <Carousel  vertical className={styles.slickDots}>
+                <Carousel  vertical className={styles.slickDots} autoplay>
                   {newList_.map((item)=>{
                     return(
                       <div>
@@ -306,7 +310,7 @@ export default class Windows extends PureComponent {
                             {
                               item.map(item =>{
                                 return(
-                                  <img
+                                  <Zmage
                                     style={{
                                       width: '120px',
                                       height: '91px',
@@ -351,7 +355,7 @@ export default class Windows extends PureComponent {
                             {
                               item.map(item =>{
                                 return(
-                                  <img
+                                  <Zmage
                                     style={{
                                       width: '120px',
                                       height: '91px',

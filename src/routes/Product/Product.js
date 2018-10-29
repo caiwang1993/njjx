@@ -5,8 +5,9 @@ import {Gauge,Area} from 'components/Charts';
 import QueueAnim from 'rc-queue-anim';
 import styles from './Product.less';
 import pro1 from '../../assets/pro1.png';
-import pro2 from '../../assets/pro2.png'
-import pro3 from '../../assets/pro3.png'
+import pro2 from '../../assets/pro2.png';
+import pro3 from '../../assets/pro3.png';
+import pro4 from '../../assets/4.jpg';
 
 const menu=[
   {name:'压载水管理系统',key:'1'},
@@ -16,12 +17,13 @@ const menu=[
   {name:'特种装备',key:'5'},
 ];
 const data = [
-  { x: '2013', y: 123 },
-  { x: '2014', y: 111 },
-  { x: '2015', y: 156 },
-  { x: '2016', y: 177 },
-  { x: '2017', y: 201 },
+  { x: '2013', y: 12 },
+  { x: '2014', y: 17 },
+  { x: '2015', y: 16 },
+  { x: '2016', y: 20 },
+  { x: '2017', y: 24 },
 ];
+
 const pic = [pro1,pro2,pro3];
 const DescriptionItem = ({title,content,unit})=>{
   return(
@@ -127,13 +129,20 @@ export default class Product extends PureComponent{
   render(){
     const offset =0;
     const {product} = this.props;
-    const {pluList,pluList_} = product;
+    const {pluList,pluList_,compList} = product;
     /*const text = pluList_.length? pluList_[0].content :'';
     function createMarkup() {
       return {__html: this.state.content};
     }*/
-    console.log(pluList_);
-
+    const compList_ =[];
+    for(let i=0,len=compList.length;i<len;i++){
+      compList_.push({
+          x: compList[i].dsc2,
+          y: eval(compList[i].dsc1),
+        }
+      );
+    }
+    console.log(compList_);
     return(
       <div className={styles.productBg}>
         <Row style={{paddingRight:10}}>
@@ -147,7 +156,7 @@ export default class Product extends PureComponent{
                     <div
                       onClick={() => {this.isClass(index,item.key);}}
                       className={this.state.currentIndex === index ? styles.menuSelected : ''}
-                      style={{position:'relative',left:18*index*index-index * 73+55+'px'}}>
+                      style={{position:'relative',left:15*index*index-index * 70+60+'px'}}>
                       <span
                         className={this.state.currentIndex === index ? styles.cancel : ''}>
                         {item.name}
@@ -187,8 +196,12 @@ export default class Product extends PureComponent{
               </div>
 
               {/*产品名称*/}
-              <div className={styles.productName}>NiBallastTM BWMS压载水管理系统</div>
-              <span className={styles.productNum}>{this.state.title}</span>
+              <div className={styles.productName}>
+                {this.state.title.substr(0,this.state.title.length-5)}
+              </div>
+              <span className={styles.productNum}>
+                {this.state.title.substr(this.state.title.length-5,this.state.title.length)}
+              </span>
 
               {/*产品大图*/}
               <div style={{height:'342px'}}>
@@ -198,9 +211,13 @@ export default class Product extends PureComponent{
                                key="demo"
                                type={['right', 'left']}
                                ease={['easeOutQuart', 'easeInOutQuart']}>
-                      <div key="a" className={styles.bigPic}>
-                        <img src={this.state.showPic} alt=""/>
-                      </div>
+                      {
+                        this.state.currentIndex === 0?
+                          <div key="a" className={styles.bigPic}>
+                            <img src={this.state.showPic} alt=""/>
+                          </div> :<img src={this.state.showPic} alt=""/>
+                      }
+
                     </QueueAnim> : ''
                 }
               </div>
@@ -270,7 +287,10 @@ export default class Product extends PureComponent{
 
             {/*产品参数*/}
             <div className={styles.parameterBox}>
-              <Card className={styles.cardBg}>
+              {
+                this.state.currentIndex === 0 ?
+                  <img src={pro4} alt="" style={{width:"100%"}} /> :
+                  <Card className={styles.cardBg}>
                 <div className={styles.title}>产品概览</div>
                 <Row style={{marginTop:'20px'}}>
 
@@ -284,6 +304,9 @@ export default class Product extends PureComponent{
 
                 </Row>
               </Card>
+              }
+
+
 
             </div>
           </Col>
